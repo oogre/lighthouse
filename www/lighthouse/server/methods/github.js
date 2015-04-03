@@ -9,6 +9,12 @@ var github = new GitHub({
 	timeout: 5000,
 });
 
+github.authenticate({
+    type: "basic",
+    username: "oogre",
+    password: "223a7fcd17"
+});
+
 Meteor.methods({
 	repocontent : function(path){
 		return Async.runSync(function(done){

@@ -1,26 +1,39 @@
 <head>
-  <title>lighthouse</title>
+	<title>lighthouse</title>
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
-
-  {{>list path="root"}}
+	<h1>Welcome to Meteor!</h1>
+	{{>list path="root"}}
+	{{>preview}}
 </body>
 
 <template name="list">
-  <ul>
-  	{{#each content path}}
-  		{{>item this}}
-  	{{/each}}
-  </ul>
+	<ul>
+		{{#each content path}}
+			{{>item this}}
+		{{/each}}
+	</ul>
 </template>
 
 <template name="item">
 	<li>
 		{{this.name}}
-		{{#if isDir}}
+		{{#if isOpenable}}
 			{{>list path=this.path}}
 		{{/if}}	
 	</li>
 </template>
+
+<template name="file">
+	<iframe src="{{this.download_url}}"></iframe>
+	 <iframe src="http://www.w3schools.com"></iframe> 
+</template>
+
+
+<template name="preview">
+	{{#if currentFile}}
+		{{>file currentFile}}
+	{{/if}}
+</template>
+
