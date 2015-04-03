@@ -27,9 +27,6 @@ Template.list.helpers({
 		else{
 			Meteor.call("repocontent", path, function(e,r){
 				var content = Session.get("content")||{};
-				console.log(path);
-				console.log(content);
-				console.log("");
 				content[path] = r.result;
 				Session.set("content", content);
 			});
@@ -43,6 +40,19 @@ Template.preview.helpers({
 	}
 });
 
+
+Template.file.helpers({
+	load : function(){
+		$.ajax(this.download_url)
+		.done(function(data){
+			console.log(data);
+		})
+		.fail(function(data){
+			console.warn(data);
+		})
+	}
+});
+
 Template.item.helpers({
 	isOpenable : function(){
 		var path = Session.get(Meteor.DIR);
@@ -51,7 +61,7 @@ Template.item.helpers({
 });
 
 Template.item.events({
-	"click li" : function(event){
+	"click li" : function(){
 		if(this.type === "dir"){
 			Session.set(Meteor.FILE, false);
 			if(Session.equals(Meteor.DIR, this.path)){
