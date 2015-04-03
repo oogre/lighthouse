@@ -1,0 +1,26 @@
+<head>
+  <title>lighthouse</title>
+</head>
+
+<body>
+  <h1>Welcome to Meteor!</h1>
+
+  {{>list path="root"}}
+</body>
+
+<template name="list">
+  <ul>
+  	{{#each content path}}
+  		{{>item this}}
+  	{{/each}}
+  </ul>
+</template>
+
+<template name="item">
+	<li>
+		{{this.name}}
+		{{#if isDir}}
+			{{>list path=this.path}}
+		{{/if}}	
+	</li>
+</template>
