@@ -9,7 +9,8 @@
 Template.file.rendered = function(){
 	hljs.configure({
 		tabReplace: "  ",
-		classPrefix: ""
+		classPrefix: "",
+		syntaxHighlightingTheme: "atelier-dune.dark"
 	});
 	hljs.initHighlighting();
 };

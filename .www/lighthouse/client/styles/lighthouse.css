@@ -19,5 +19,5 @@ ul li:hover{
 pre{
 	border: solid 1px #ccc;
 	padding: 20px;
-	background: #EAE7E4;
+	box-shadow: 3px 0 5px #ccc inset;
 }
