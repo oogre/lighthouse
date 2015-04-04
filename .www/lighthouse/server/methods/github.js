@@ -26,6 +26,16 @@ Meteor.methods({
 			}); 
 		});
 	},
+	branches : function(){
+		return Async.runSync(function(done){
+			github.repos.getBranches({
+				user:"oogre",
+				repo:"lighthouse",
+			},function(err,data){
+				done(null,data) ;
+			}); 
+		});
+	},
 	getFile : function(url){
 		var Future = Npm.require("fibers/future");
 		var myFuture = new Future();

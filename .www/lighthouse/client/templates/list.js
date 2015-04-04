@@ -14,6 +14,12 @@ Template.list.helpers({
 			return content[path];
 		}
 		else{
+
+			Meteor.call("branches", function(e,r){
+				console.log(e);
+				console.log(r);
+			});
+
 			Meteor.call("repocontent", path, function(e,r){
 				var content = Session.get(Meteor.CONTENT)||{};
 				content[path] = r.result;
