@@ -11,3 +11,6 @@ meteorhacks:npm
 
 
 npm-container
+http
+simple:highlight.js
+markdown

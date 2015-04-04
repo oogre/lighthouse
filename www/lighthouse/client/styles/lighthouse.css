@@ -1,1 +1,23 @@
 /* CSS declarations go here */
+
+ul{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	
+}
+ul li:not(.open){
+	color:#666;	
+}
+ul li.open{
+	color:#444;	
+}
+
+ul li:hover{
+	cursor: pointer;
+}
+pre{
+	border: solid 1px #ccc;
+	padding: 20px;
+	background: #EAE7E4;
+}

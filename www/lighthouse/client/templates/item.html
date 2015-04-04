@@ -1,0 +1,14 @@
+<template name="item">
+	<li class="{{#if isOpen}}open{{/if}}">
+		{{level}} {{this.name}}
+		{{#if isDir}}
+			{{#if isOpen}}
+				{{>list path=this.path}}
+			{{/if}}	
+		{{else}}
+			{{#if isOpen}}
+				{{>preview}}
+			{{/if}}	
+		{{/if}}	
+	</li>
+</template>
