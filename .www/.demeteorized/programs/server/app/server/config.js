@@ -1,22 +1,23 @@
 (function(){"use strict";
 /*global Meteor : false */
+/*global process : false */
 
 Meteor.startup(function(){
 	Meteor.Auth = {
 		github  : {
 			basic : {
 				type: "basic",
-				username: "oogre",
-				password: "223a7fcd17"
+				username: process.env.GITHUB_USER,
+				password: process.env.GITHUB_PWD
 			},
 			token : {
 				type: "oauth",
-				token: "4f7e3ca431dd79357a7d8e00e0b571e3cf9f78ef"
+				token: process.env.GITHUB_TOKEN
 			}
 		},
 		tumblr : {
-			consumer_key: "ZRpcBSqjGiQEgRhFWOSpwPr3uobxaNaubIkCq6vCyQHEKybnpw",
-			consumer_secret: "K7ETeOZQDEiiomYWZpXjueC8DcdYPwmNiqZAE43J6MTmE7k48E",
+			consumer_key: process.env.TUMBLR_KEY,
+			consumer_secret: process.env.TUMBLR_SECRET
 			//token: 'OAuth Access Token',
 			//token_secret: 'OAuth Access Token Secret'
 		}
