@@ -111,7 +111,7 @@ HTTP=Package.http.HTTP,hljs=Package["simple:highlight.js"].hljs,Showdown=Package
 
 !function(){"use strict";Template.item.helpers({isDir:function(){return"dir"===this.type},isOpen:function(){var e=Session.get(Meteor.DIR),t=Session.get(Meteor.FILE);return _.isString(e)&&e.indexOf(this.path)>-1||_.isObject(t)&&_.isString(t.path)&&t.path.indexOf(this.path)>-1},level:function(){for(var e=this.path.split("/").length-1,t="",s=0;e>s;s++)t+="–";return t}}),Template.item.events({"click li":function(){if("dir"===this.type)if(Session.set(Meteor.FILE,!1),Session.equals(Meteor.DIR,this.path)){var e=Session.get(Meteor.DIR);e=e.split(new RegExp(this.name+"|/"+this.name,"g"))[0],Session.set(Meteor.DIR,e)}else Session.set(Meteor.DIR,this.path);else Session.set(Meteor.FILE_CONTENT,!1),Session.set(Meteor.FILE,this);return!1}})}();
 
-!function(){"use strict";Template.list.helpers({githubContent:function(e){e=e||"root";var t=Session.get(Meteor.CONTENT)||{};return t[e]?t[e]:(Meteor.call("repocontent",e,function(t,o){var n=Session.get(Meteor.CONTENT)||{};n[e]=o.result,Session.set(Meteor.CONTENT,n)}),[])}})}();
+!function(){"use strict";Template.list.helpers({githubContent:function(e){e=e||"root";var t=Session.get(Meteor.CONTENT)||{};return t[e]?t[e]:(Meteor.call("repocontent",e,function(t,n){var o=Session.get(Meteor.CONTENT)||{};o[e]=_.filter(n.result,function(e){return!e.name.match(/^\./)}),Session.set(Meteor.CONTENT,o)}),[])}})}();
 
 !function(){"use strict";Template.preview.helpers({currentFile:function(){return Session.get(Meteor.FILE)}})}();
 

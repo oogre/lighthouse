@@ -1,4 +1,6 @@
 "use strict";
+/*global _ : false */
+/*global Meteor : false */
 /*global Meteor : false */
 /*global Template : false */
 /*global Session : false */
@@ -16,7 +18,9 @@ Template.list.helpers({
 		else{
 			Meteor.call("repocontent", path, function(e,r){
 				var content = Session.get(Meteor.CONTENT)||{};
-				content[path] = r.result;
+				content[path] = _.filter(r.result, function(elem){
+					return !elem.name.match(/^\./);
+				});
 				Session.set(Meteor.CONTENT, content);
 			});
 		}
