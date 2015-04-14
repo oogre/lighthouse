@@ -14,3 +14,9 @@ Session.setDefault(Meteor.OPEN, false);
 
 Meteor.FILE_CONTENT			= "fileContent";
 Session.setDefault(Meteor.FILE_CONTENT, false);
+
+Meteor.TUMBLR_POSTS			= "tumblrPost";
+Session.setDefault(Meteor.TUMBLR_POSTS, false);
+
+Meteor.TUMBLR_POSTS_LOADING	= "tumblrPostLoading";
+Session.setDefault(Meteor.TUMBLR_POSTS_LOADING, false);

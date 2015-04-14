@@ -21,3 +21,9 @@ pre{
 	padding: 20px;
 	box-shadow: 3px 0 5px #ccc inset;
 }
+ul.list-inline li{
+	float: left;
+}
+img{
+	max-width: 400px;
+}

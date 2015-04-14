@@ -5,17 +5,30 @@
 /*global Async : false */
 /*global Meteor : false */
 
-var GitHub = Meteor.npmRequire("github");
- 
-var github = new GitHub({
-	version: "3.0.0",
-	timeout: 5000,
-});
+var github;
+var tumblr;
 
-github.authenticate(Meteor.githubAuth);
+var initGithub = function(){
+	var GitHub = Meteor.npmRequire("github");	
+
+	var github = new GitHub({
+		version: "3.0.0",
+		timeout: 5000,
+	});
+
+	github.authenticate(Meteor.Auth.github.token);
+	return github;
+};
+ 
+var initTumblur = function(){
+	var tumblr = Meteor.npmRequire("tumblr");
+	var blog = new tumblr.Blog("viceetversa.tumblr.com", Meteor.Auth.tumblr);
+	return blog;
+};
 
 Meteor.methods({
 	repocontent : function(path){
+		github = github || initGithub();
 		return Async.runSync(function(done){
 			github.repos.getContent({
 				user:"oogre",
@@ -27,6 +40,7 @@ Meteor.methods({
 		});
 	},
 	branches : function(){
+		github = github || initGithub();
 		return Async.runSync(function(done){
 			github.repos.getBranches({
 				user:"oogre",
@@ -45,5 +59,39 @@ Meteor.methods({
 				myFuture.return(data.content);		
 		});
 		return myFuture.wait();
+	},
+	rateLimit : function(){
+		github = github || initGithub();
+		return Async.runSync(function(done){
+			github.misc.rateLimit({},function(err,data){
+				done(null,data) ;
+			}); 
+		});
+	},
+	tumblr : function(offset){
+		tumblr = tumblr || initTumblur();
+		return Async.runSync(function(done){
+			tumblr.posts({
+				limit: 2, 
+				offset: (offset||0)
+			}, function(error, response) {
+			  if (error) {
+			    throw new Error(error);
+			  }
+			  done(null,response.posts);
+			});
+		});
+	},
+	tumblrInfo : function(){
+		tumblr = tumblr || initTumblur();
+		return Async.runSync(function(done){
+			tumblr.info(function(error, response) {
+			  if (error) {
+			    throw new Error(error);
+			  }
+			  done(null,response);
+			});
+		});
 	}
+	/**/
 });

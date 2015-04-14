@@ -36,6 +36,7 @@ Template.item.events({
 			}
 		}
 		else{
+			Session.set(Meteor.FILE_CONTENT, false);
 			Session.set(Meteor.FILE, this);
 		}
 		return false;

@@ -1,0 +1,31 @@
+<template name="tumblr">
+	<ul>
+		{{#each posts}}
+			{{>tumblerPost this}}
+		{{/each}}
+	</ul>
+</template>
+
+<template name="tumblerPost">
+	<li>
+		{{#if isPhoto }}
+			<h3>{{{this.caption}}}</h3>
+			<ul class="list-inline">
+			{{#each this.photos}}
+				<li><img src="{{this.original_size.url}}" /></li>
+			{{/each}}
+			</ul>
+		{{/if}}
+		
+		{{#if isVideo}}
+			<h3>{{{this.caption}}}</h3>
+			{{{video}}}
+		{{/if}}
+		
+		{{#if isText}}
+		hello
+			<h3>{{{this.title}}}</h3>
+			{{{this.body}}}
+		{{/if}}
+	</li>
+</template>	
