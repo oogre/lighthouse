@@ -24,6 +24,11 @@ pre{
 ul.list-inline li{
 	float: left;
 }
+ul.list-inline:after {
+    content:'';
+    display:block;
+    clear: both;
+}
 img{
 	max-width: 400px;
 }

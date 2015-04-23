@@ -23,9 +23,11 @@
 		{{/if}}
 		
 		{{#if isText}}
-		hello
 			<h3>{{{this.title}}}</h3>
 			{{{this.body}}}
+		{{/if}}
+		{{#if isLink}}
+			<h3><a target="_blank" href="{{this.url}}">{{{this.title}}}</a></h3>
 		{{/if}}
 	</li>
 </template>	

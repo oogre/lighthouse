@@ -55,6 +55,9 @@ Template.tumblerPost.helpers({
 	isPhoto : function(){
 		return this.type === "photo";
 	},
+	isLink : function(){
+		return this.type === "link";
+	},
 	isVideo : function(){
 		return this.type === "video";
 	},
